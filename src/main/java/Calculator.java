@@ -4,8 +4,17 @@ public class Calculator {
     private double[] dataSet;
 
     // Constructor
-    public Calculator (String dataSet){
+    public Calculator (String dataSet, String option){
         this.dataSet =  convertToDouble(dataSet); // convert to double
+        if(option.equals("1") || option.equals("mean")){
+            getMean(this.dataSet);
+        }
+        else if(option.equals("2") || option.equals("mode")){
+            getMod(this.dataSet);
+        }
+        else{
+            System.out.println("Wrong operation number, please try again!");
+        }
     }
 
     public double[] getDataSet(){

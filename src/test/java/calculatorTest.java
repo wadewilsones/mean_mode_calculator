@@ -9,18 +9,18 @@ public class calculatorTest {
     @Test
     void calculateMean() {
         //Create an arrayList
-        Calculator calculator = new Calculator("3,5,6,3,5");
+        Calculator calculator = new Calculator("3,5,6,3,5", "1");
         double [] data = calculator.getDataSet();
         double mean = calculator.getMean(data);
         assertThat(mean, CoreMatchers.is(4.4));
     }
+    //One mode
     @Test
     void calculateMod() {
-        Calculator calculator = new Calculator("3,5,6,3,5");
+        Calculator calculator = new Calculator("1,4,5,6,7", "2");
         double [] data = calculator.getDataSet();
-        double mod = calculator.getMod(data);
-        assertThat(mod, CoreMatchers.is(3));
+        String mod = calculator.getMod(data);
+        assertThat(mod, CoreMatchers.is("The mode is: 4.0"));
     }
-
 
 }

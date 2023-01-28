@@ -41,10 +41,40 @@ public class Calculator {
         }
     }
     public double getMean(double[] dataSet) {
-        return 1;
+        double total = 0;
+        for(int i = 0; i < dataSet.length; i++){
+            total = total+dataSet[i];
+        }
+        double mean = total/(dataSet.length);
+        return mean;
     }
 
-    public double getMod(double[] dataSet) {
-        return 1;
+    public String getMod(double[] dataSet) {
+        //Store frequencies
+        int[] numberFrequency = new int[dataSet.length];
+
+        for(int i = 0; i < dataSet.length; i++){
+            int frequency = 1;
+            for(int j = 1; j < dataSet.length-1; j++){
+                if(dataSet[i] == dataSet[j]){
+                    frequency++;
+                }
+            }
+            numberFrequency[i] = frequency;
+        }
+
+        //Find the highest value and its index
+        double highestValue = 0;
+        int highestValueIndex = 0;
+        String data = "There is no mode!";
+        for(int i = 0; i < numberFrequency.length; i++){
+            if(numberFrequency[i] > highestValue){
+                highestValue = numberFrequency[i];
+                highestValueIndex = i;
+                data = "The mode is: " + dataSet[highestValueIndex];
+            }
+
+        }
+        return data;
     }
 }

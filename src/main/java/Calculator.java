@@ -45,7 +45,8 @@ public class Calculator {
         for(int i = 0; i < dataSet.length; i++){
             total = total+dataSet[i];
         }
-        double mean = total/(dataSet.length);
+        double mean = total / dataSet.length;
+        System.out.println("The mean is: "+mean);
         return mean;
     }
 
@@ -75,6 +76,7 @@ public class Calculator {
             }
 
         }
+        System.out.println(data);
         return data;
     }
 }

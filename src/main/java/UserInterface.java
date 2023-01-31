@@ -30,6 +30,7 @@ public class UserInterface {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter your option below:");
         String userOption = reader.nextLine();
+
         System.out.println("Enter your data set using commas!");
         String userDataSet = reader.nextLine();
         this.dataSet = userDataSet;

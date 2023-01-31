@@ -1,11 +1,12 @@
 import java.lang.reflect.Executable;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Collections;
 public class Calculator {
-    private double[] dataSet;
+    private ArrayList <Double> dataSet;
 
     // Constructor
     public Calculator (String dataSet, String option){
-        this.dataSet =  convertToDouble(dataSet); // convert to double
+        this.dataSet =  convertToDouble(dataSet); // convert to double ArrayList
         if(option.equals("1") || option.equals("mean")){
             getMean(this.dataSet);
         }
@@ -17,62 +18,68 @@ public class Calculator {
         }
     }
 
-    public double[] getDataSet(){
+    public ArrayList <Double> getDataSet(){
         return this.dataSet;
     }
 
-    public double[] convertToDouble(String dataSet){
+    public ArrayList <Double> convertToDouble(String dataSet){
         // Convert string to double
         try{
             //Remove all commas
             String[] slicedDataSet = dataSet.split(",");
-            double[] convertedString = new double[slicedDataSet.length];
+            Double[] convertedString = new Double[slicedDataSet.length];
+            ArrayList <Double> numberedSet = new  ArrayList <Double>();
             //Convert to double
-            // Get the iterator
             for(int i = 0; i < slicedDataSet.length; i++){
-                convertedString[i] = Double.parseDouble(slicedDataSet[i]);
+                convertedString[i] = (Double.parseDouble(slicedDataSet[i]));
             }
-
-            return convertedString;
+            Collections.addAll(numberedSet, convertedString);
+            return numberedSet;
         }
         catch(Exception err){
             System.out.println("Error!");
             throw err;
         }
     }
-    public double getMean(double[] dataSet) {
+    public double getMean(ArrayList <Double> dataSet) {
         double total = 0;
-        for(int i = 0; i < dataSet.length; i++){
-            total = total+dataSet[i];
+        double mean = 0;
+        //Add all numbers to total
+        for(double num : dataSet){
+            total += num;
         }
-        double mean = total / dataSet.length;
-        System.out.println("The mean is: "+mean);
+        mean = total/dataSet.size();
+        System.out.println("The mean is " + mean);
         return mean;
     }
 
-    public String getMod(double[] dataSet) {
+    public String getMod(ArrayList<Double> dataSet) {
         //Store frequencies
-        int[] numberFrequency = new int[dataSet.length];
-
-        for(int i = 0; i < dataSet.length; i++){
+        int[] frequencyArray = new int[dataSet.size()];
+        for(int i = 0; i < dataSet.size(); i++){
             int frequency = 1;
-            for(int j = 1; j < dataSet.length-1; j++){
-                if(dataSet[i] == dataSet[j]){
+            for(int j = i+1; j < dataSet.size(); j++){
+                if(dataSet.get(i).equals(dataSet.get(j))){
                     frequency++;
                 }
             }
-            numberFrequency[i] = frequency;
+            frequencyArray[i] = frequency;
         }
-
-        //Find the highest value and its index
-        double highestValue = 0;
+        int highestValue = 1;
         int highestValueIndex = 0;
-        String data = "There is no mode!";
-        for(int i = 0; i < numberFrequency.length; i++){
-            if(numberFrequency[i] > highestValue){
-                highestValue = numberFrequency[i];
+        String data = null;
+
+        for(int i = 0; i < frequencyArray.length; i++){
+            if(frequencyArray[i] > highestValue){
+                highestValue = frequencyArray[i];
                 highestValueIndex = i;
-                data = "The mode is: " + dataSet[highestValueIndex];
+                data = "The mode is " + dataSet.get(highestValueIndex);
+            }
+            else if(frequencyArray[i] == highestValue && frequencyArray[i] > 1){
+                data = "There are a few modes:" + dataSet.get(highestValueIndex) + " and " + dataSet.get(i);
+            }
+            else if(highestValue == 1){
+                data = "No mode";
             }
 
         }

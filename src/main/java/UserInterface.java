@@ -1,10 +1,12 @@
 import java.util.Scanner;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 public class UserInterface {
     //Commands
     private String [] commands;
     private String dataSet;
     private String option;
-
 
     public UserInterface(){
         //Set up commands
@@ -43,4 +45,5 @@ public class UserInterface {
     public String getOption(){
         return option;
     }
+
 }

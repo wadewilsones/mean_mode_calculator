@@ -1,21 +1,11 @@
-import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.Collections;
 public class Calculator {
     private ArrayList <Double> dataSet;
 
     // Constructor
-    public Calculator (String dataSet, String option){
-        this.dataSet =  convertToDouble(dataSet); // convert to double ArrayList
-        if(option.equals("1") || option.equals("mean")){
-            getMean(this.dataSet);
-        }
-        else if(option.equals("2") || option.equals("mode")){
-            getMod(this.dataSet);
-        }
-        else{
-            System.out.println("Wrong operation number, please try again!");
-        }
+    public Calculator (String dataSet){
+        this.dataSet = convertToDouble(dataSet); // convert to double ArrayList
     }
 
     public ArrayList <Double> getDataSet(){
@@ -49,7 +39,6 @@ public class Calculator {
             total += num;
         }
         mean = total/dataSet.size();
-        System.out.println("The mean is " + mean);
         return mean;
     }
 
@@ -83,7 +72,7 @@ public class Calculator {
             }
 
         }
-        System.out.println(data);
+
         return data;
     }
 }

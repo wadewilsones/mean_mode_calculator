@@ -1,10 +1,13 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.FlowPane;
@@ -25,9 +28,11 @@ public class JavaFxApplication extends Application {
         buttons.getChildren().add(mean);
         buttons.getChildren().add(mode);
 
+        buttons.setAlignment(Pos.CENTER);
+        buttons.setPadding(new Insets(0.0, 0.0, 20.0, 0.0));
         //Layout
-        Label headings = new Label ("Calculate mean or mode");
-        Label description = new Label ("Type your data set here using commas");
+        Label headings = new Label ("Mean/Mode calculator");
+        Label description = new Label ("Type your data set here using commas:");
         TextField dataSet = new TextField(); // DataSet input
 
         FlowPane textHolder = new FlowPane();
@@ -35,15 +40,25 @@ public class JavaFxApplication extends Application {
         textHolder.getChildren().add(description);
         textHolder.getChildren().add(dataSet);
 
-        BorderPane layout = new BorderPane();
-        layout.setTop(textHolder);
-        layout.setCenter(buttons);
+        textHolder.setAlignment(Pos.TOP_CENTER); // align text
+        textHolder.setPadding(new Insets(100.0, 0.0, 0.0, 0.0));
+        textHolder.setVgap(15); // vertical space
 
         Label meanResultDisplay = new Label();
         Label modeResultDisplay = new Label();
         //Display Mean and Mode
-        textHolder.getChildren().add(meanResultDisplay);
-        textHolder.getChildren().add(modeResultDisplay);
+
+        VBox resultHolder = new VBox();
+        resultHolder.getChildren().add(meanResultDisplay);
+        resultHolder.getChildren().add(modeResultDisplay);
+        resultHolder.setAlignment(Pos.BOTTOM_CENTER);
+
+        BorderPane layout = new BorderPane();
+        layout.setTop(textHolder);
+        layout.setCenter(resultHolder);
+        layout.setBottom(buttons);
+
+
 
 
         Scene view = new Scene(layout);

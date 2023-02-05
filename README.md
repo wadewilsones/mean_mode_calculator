@@ -9,7 +9,6 @@ To get started clone the repo:
 
 ```
 gh repo clone wadewilsones/mean_mode_calculator
-
 ```
 
 <b>IntelliJ</b>
